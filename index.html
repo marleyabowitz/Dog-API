@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <div class="jumbotron text-center">
+        <img src="dog.png" width="100px">
+        <h1> Dog pictures! </h1>
+        <p> Type any dog breed into the search bar for a cute picture! </p>
+    </div>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+
+                <div class= text-center>
+                    <input  type='text' id="searchTerm" placeholder="insert breed">
+                    <input type="button" onclick="searchForADog();" value="SEARCH">
+                    <br>
+                    <p id="output"> </p>
+                </div>
+
+
+
+                <script>
+                    function searchForADog() {
+                        let searchTerm = document.getElementById('searchTerm').value;
+                        console.log(searchTerm);
+                        let url = 'https://dog.ceo/api/breed/' + searchTerm + '/images/random';
+                        fetch(url)
+                            .then((message) => {
+                                return message.json();
+                            })
+                            .then((myJson) => {
+                                console.log(myJson);
+                                let outputs = myJson.message;
+                                let p = document.getElementById('output')
+                                p.innerHTML = "<img src=" + myJson.message + ">"
+
+                            });
+
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+</body></html>
